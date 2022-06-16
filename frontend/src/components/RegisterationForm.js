@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import Button from "@mui/material/Button";
+import { TextField } from "@mui/material";
 
-const RegisterationForm = () => {
+const RegisterationForm = ({ saveUser }) => {
   const [formData, setFormData] = useState({});
   const handleFormData = (event) => {
     event.preventDefault();
-    console.log(formData);
+    saveUser(formData);
   };
   const handleChange = (event) => {
     setFormData({
@@ -15,34 +17,36 @@ const RegisterationForm = () => {
   return (
     <div>
       <form method="post" onSubmit={handleFormData}>
-        <label>
-          Email:
-          <input
-            type="text"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          FirstName:
-          <input
-            type="text"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          LastName:
-          <input
-            type="text"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-          />
-        </label>
-        <button type="submit">Submit</button>
+        <TextField
+          type="text"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          variant="outlined"
+          label="Email"
+          sx={{ m: 1 }}
+        />
+        <TextField
+          type="text"
+          name="firstName"
+          value={formData.firstName}
+          onChange={handleChange}
+          label="First Name"
+          variant="outlined"
+          sx={{ m: 1 }}
+        />
+        <TextField
+          type="text"
+          name="lastName"
+          value={formData.lastName}
+          onChange={handleChange}
+          variant="outlined"
+          label="Last Name"
+          sx={{ m: 1 }}
+        />
+        <Button type="submit" variant="contained" sx={{ m: 1 }}>
+          Submit
+        </Button>
       </form>
     </div>
   );
